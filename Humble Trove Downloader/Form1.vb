@@ -7,7 +7,7 @@ Public Class Form1
 
     Public baseuri = "https://www.humblebundle.com/api/v1/trove/chunk?index="
     Public json
-    Public counter = 1
+    Public counter = 0
     Public chunked = False
     Public download = ""
     Public download_type = ""
