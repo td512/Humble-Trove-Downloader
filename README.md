@@ -14,9 +14,7 @@ This program is to download all the items in the Humble Bundle Trove. The code i
 # Installation.
 
 If you have Visual Studio then you can compile it yourself.  
-If you dont then the built installer is below.  
-If you are worried about the security of these they were built by gitlab on my behalf from the code I uploaded, here [have a look.](https://gitlab.com/silver_rust/trove_downloader/pipelines)
-
+If you don't, the built installer is below.  
 * [Windows](https://ltscdn.m6.nz/humble/trove-downloader.exe)
 
 Put the files where-ever you want and move onto the next part.
