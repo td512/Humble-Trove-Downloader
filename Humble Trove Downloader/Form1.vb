@@ -6,7 +6,6 @@ Imports Newtonsoft.Json.Linq
 Public Class Form1
 
     Public baseuri = "https://www.humblebundle.com/api/v1/trove/chunk?index="
-    Public json
     Public counter = 0
     Public chunked = False
     Public download = ""
@@ -29,41 +28,44 @@ Public Class Form1
             RichTextBox1.AppendText("Fetching Humble Trove Items")
 
             Do
-                Threading.Thread.Sleep(500)
 
-                If chunked = True Then
+                Dim client As New WebClient
+                Dim result As String = client.DownloadString(New Uri(baseuri + counter.ToString))
+                client.Dispose()
+
+                If result = "[]" Then
                     Exit Do
-                End If
-
-                Dim thread As New Thread(
-                    Sub()
-                        Dim client As New WebClient
-                        Dim result As String = client.DownloadString(New Uri("https://www.humblebundle.com/api/v1/trove/chunk?index=" + counter.ToString))
-                        client.Dispose()
-                        If result = "[]" Then
-                            chunked = True
-                        Else
-                            If json Is Nothing Then
-                                'RichTextBox1.Invoke(Sub() RichTextBox1.Text = result)
-
-                                json = JArray.Parse(result.ToString).ToString
-                            Else
-                                Dim orig_json = JArray.Parse(json)
-                                Dim new_json = JArray.Parse(result)
-                                orig_json.Merge(new_json)
-                                json = orig_json.ToString
-                            End If
+                Else
+                    Dim trove = JArray.Parse(result)
+                    For Each Row In trove
+                        If Row("downloads")("windows") IsNot Nothing Then
+                            win_downloads.Add($"https://www.humblebundle.com/api/v1/user/download/sign?filename={Row("downloads")("windows")("url")("web")}&machine_name={Row("downloads")("windows")("machine_name")}")
                         End If
-                    End Sub
-                    )
-                thread.Start()
-
-                counter += 1
+                        If Row("downloads")("mac") IsNot Nothing Then
+                            mac_downloads.Add($"https://www.humblebundle.com/api/v1/user/download/sign?filename={Row("downloads")("mac")("url")("web")}&machine_name={Row("downloads")("mac")("machine_name")}")
+                        End If
+                        If Row("downloads")("linux") IsNot Nothing Then
+                            lin_downloads.Add($"https://www.humblebundle.com/api/v1/user/download/sign?filename={Row("downloads")("linux")("url")("web")}&machine_name={Row("downloads")("linux")("machine_name")}")
+                        End If
+                    Next
+                    counter += 1
+                End If
             Loop
+            win_links = win_downloads.Count
+            mac_links = mac_downloads.Count
+            lin_links = lin_downloads.Count
+            all_links = win_links + mac_links + lin_links
             RichTextBox1.AppendText(Environment.NewLine)
             RichTextBox1.AppendText("Fetched Chunks! Parsing...")
             RichTextBox1.AppendText(Environment.NewLine)
-            RichTextBox1.AppendText("Everything looks good, setting up UI")
+            RichTextBox1.AppendText($"Windows: {win_links} available downloads")
+            RichTextBox1.AppendText(Environment.NewLine)
+            RichTextBox1.AppendText($"Mac: {mac_links} available downloads")
+            RichTextBox1.AppendText(Environment.NewLine)
+            RichTextBox1.AppendText($"Linux: {lin_links} available downloads")
+            RichTextBox1.AppendText(Environment.NewLine)
+            RichTextBox1.AppendText($"Total: {all_links} available downloads")
+
             Label1.Visible = False
             Label2.Visible = True
             RadioButton1.Visible = True
@@ -137,26 +139,10 @@ Public Class Form1
             RichTextBox1.AppendText(Environment.NewLine)
             RichTextBox1.AppendText("Session key set!")
 
-            Dim trove = JArray.Parse(json)
-            For Each Row In trove
+            For Each i In win_downloads
                 RichTextBox1.AppendText(Environment.NewLine)
-                RichTextBox1.AppendText($"Building links for {Row("human-name")}")
-                If Row("downloads")("windows") IsNot Nothing Then
-                    win_downloads.Add($"https://www.humblebundle.com/api/v1/user/download/sign?machine_name={Row("downloads")("windows")("url")("web")}&filename={Row("downloads")("windows")("machine_name")}")
-                End If
-                If Row("downloads")("mac") IsNot Nothing Then
-                    mac_downloads.Add($"https://www.humblebundle.com/api/v1/user/download/sign?machine_name={Row("downloads")("mac")("url")("web")}&filename={Row("downloads")("mac")("machine_name")}")
-                End If
-                If Row("downloads")("linux") IsNot Nothing Then
-                    lin_downloads.Add($"https://www.humblebundle.com/api/v1/user/download/sign?machine_name={Row("downloads")("linux")("url")("web")}&filename={Row("downloads")("linux")("machine_name")}")
-                End If
+                RichTextBox1.AppendText(i)
             Next
-            RichTextBox1.AppendText(Environment.NewLine)
-            RichTextBox1.AppendText("Links built!")
-            win_links = win_downloads.Count
-            mac_links = mac_downloads.Count
-            lin_links = lin_downloads.Count
-            all_links = win_links + mac_links + lin_links
             RichTextBox1.AppendText(Environment.NewLine)
             RichTextBox1.AppendText("Starting downloads (this could take a while)")
 
@@ -432,7 +418,7 @@ Public Class Form1
         reqparm.Add("machine_name", machine_name)
         reqparm.Add("filename", filename)
         client.Headers.Set("cookie", $"_simpleauth_sess={session_key}")
-        Dim responsebytes = client.UploadValues("https://www.humblebundle.com/api/v1/user/download/sign?machine_name=" + machine_name + "&filename=" + filename, "POST", reqparm)
+        Dim responsebytes = client.UploadValues(url, "POST", reqparm)
         Dim responsebody = (New Text.UTF8Encoding).GetString(responsebytes)
         client.Dispose()
         Return responsebody
