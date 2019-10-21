@@ -138,11 +138,6 @@ Public Class Form1
             RichTextBox1.AppendText("Download type: " + download_type)
             RichTextBox1.AppendText(Environment.NewLine)
             RichTextBox1.AppendText("Session key set!")
-
-            For Each i In win_downloads
-                RichTextBox1.AppendText(Environment.NewLine)
-                RichTextBox1.AppendText(i)
-            Next
             RichTextBox1.AppendText(Environment.NewLine)
             RichTextBox1.AppendText("Starting downloads (this could take a while)")
 
@@ -171,6 +166,9 @@ Public Class Form1
                             this_dl = downloads("signed_url")
                         Else
                             this_dl = downloads("signed_torrent_url")
+                        End If
+                        If this_dl Is Nothing Then
+                            Continue For
                         End If
                         Dim this_filename = Path.GetFileName(New Uri(this_dl).LocalPath)
                         RichTextBox1.AppendText(Environment.NewLine)
@@ -212,6 +210,9 @@ Public Class Form1
                         Else
                             this_dl = downloads("signed_torrent_url")
                         End If
+                        If this_dl Is Nothing Then
+                            Continue For
+                        End If
                         Dim this_filename = Path.GetFileName(New Uri(this_dl).LocalPath)
                         RichTextBox1.AppendText(Environment.NewLine)
                         RichTextBox1.AppendText($"Starting download for {this_filename} (Mac)")
@@ -251,6 +252,9 @@ Public Class Form1
                             this_dl = downloads("signed_url")
                         Else
                             this_dl = downloads("signed_torrent_url")
+                        End If
+                        If this_dl Is Nothing Then
+                            Continue For
                         End If
                         Dim this_filename = Path.GetFileName(New Uri(this_dl).LocalPath)
                         RichTextBox1.AppendText(Environment.NewLine)
@@ -312,6 +316,9 @@ Public Class Form1
                         Else
                             this_dl = downloads("signed_torrent_url")
                         End If
+                        If this_dl Is Nothing Then
+                            Continue For
+                        End If
                         Dim this_filename = Path.GetFileName(New Uri(this_dl).LocalPath)
                         RichTextBox1.AppendText(Environment.NewLine)
                         RichTextBox1.AppendText($"Starting download for {this_filename} (Windows)")
@@ -339,6 +346,9 @@ Public Class Form1
                         Else
                             this_dl = downloads("signed_torrent_url")
                         End If
+                        If this_dl Is Nothing Then
+                            Continue For
+                        End If
                         Dim this_filename = Path.GetFileName(New Uri(this_dl).LocalPath)
                         RichTextBox1.AppendText(Environment.NewLine)
                         RichTextBox1.AppendText($"Starting download for {this_filename} (Mac)")
@@ -365,6 +375,9 @@ Public Class Form1
                             this_dl = downloads("signed_url")
                         Else
                             this_dl = downloads("signed_torrent_url")
+                        End If
+                        If this_dl Is Nothing Then
+                            Continue For
                         End If
                         Dim this_filename = Path.GetFileName(New Uri(this_dl).LocalPath)
                         RichTextBox1.AppendText(Environment.NewLine)
