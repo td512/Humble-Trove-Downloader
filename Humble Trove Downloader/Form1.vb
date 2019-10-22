@@ -21,6 +21,7 @@ Public Class Form1
     Public all_links = New Integer
     Public downloaded = New Integer
     Public downloads_to_complete = New Integer
+    Public this_filepath = ""
     Public wc As New WebClient
 
     Private Sub Form1_VisibleChanged(sender As Object, e As EventArgs) Handles MyBase.VisibleChanged
@@ -130,6 +131,10 @@ Public Class Form1
                 download_type = "Torrent"
             End If
 
+            If String.IsNullOrEmpty(save_to) Then
+                save_to = My.Application.Info.DirectoryPath
+            End If
+
             session_key = TextBox1.Text
 
             RichTextBox1.AppendText(Environment.NewLine)
@@ -146,15 +151,10 @@ Public Class Form1
                     downloads_to_complete = win_links
                     RichTextBox1.AppendText(Environment.NewLine)
                     RichTextBox1.AppendText($"There are {win_links} files for me to download")
-                    If String.IsNullOrEmpty(save_to) Then
-                        RichTextBox1.AppendText(Environment.NewLine)
-                        RichTextBox1.AppendText($"Creating directory {My.Application.Info.DirectoryPath}\Windows")
-                        Directory.CreateDirectory(My.Application.Info.DirectoryPath & "\Windows")
-                    Else
-                        RichTextBox1.AppendText(Environment.NewLine)
-                        RichTextBox1.AppendText($"Creating directory {save_to}\Windows")
-                        Directory.CreateDirectory(save_to & "\Windows")
-                    End If
+
+                    RichTextBox1.AppendText(Environment.NewLine)
+                    RichTextBox1.AppendText($"Creating directory {save_to}\Windows")
+                    Directory.CreateDirectory(save_to & "\Windows")
                     For Each link In win_downloads
                         downloaded += 1
                         Dim qs = New Uri(link).Query
@@ -171,17 +171,13 @@ Public Class Form1
                             Continue For
                         End If
                         Dim this_filename = Path.GetFileName(New Uri(this_dl).LocalPath)
+                        this_filepath = $"{save_to}\Windows\{this_filename}"
                         RichTextBox1.AppendText(Environment.NewLine)
                         RichTextBox1.AppendText($"Starting download for {this_filename} (Windows)")
                         AddHandler wc.DownloadProgressChanged, AddressOf DownloadProgressChanged
                         AddHandler wc.DownloadFileCompleted, AddressOf DownloadProgressCompleted
-                        If String.IsNullOrEmpty(save_to) Then
-                            Await wc.DownloadFileTaskAsync(New Uri(this_dl), My.Application.Info.DirectoryPath & $"\Windows\{this_filename}")
-                            wc.Dispose()
-                        Else
-                            Await wc.DownloadFileTaskAsync(New Uri(this_dl), save_to & $"\Windows\{this_filename}")
-                            wc.Dispose()
-                        End If
+                        Await wc.DownloadFileTaskAsync(New Uri(this_dl), this_filepath)
+                        wc.Dispose()
                         RichTextBox1.AppendText(Environment.NewLine)
                         RichTextBox1.AppendText($"I've downloaded {downloaded} / {win_links} files, {win_links - downloaded} files left")
                     Next
@@ -189,15 +185,9 @@ Public Class Form1
                     downloads_to_complete = mac_links
                     RichTextBox1.AppendText(Environment.NewLine)
                     RichTextBox1.AppendText($"There are {mac_links} files for me to download")
-                    If String.IsNullOrEmpty(save_to) Then
-                        RichTextBox1.AppendText(Environment.NewLine)
-                        RichTextBox1.AppendText($"Creating directory {My.Application.Info.DirectoryPath}\Mac")
-                        Directory.CreateDirectory(My.Application.Info.DirectoryPath & "\Mac")
-                    Else
-                        RichTextBox1.AppendText(Environment.NewLine)
-                        RichTextBox1.AppendText($"Creating directory {save_to}\Mac")
-                        Directory.CreateDirectory(save_to & "\Mac")
-                    End If
+                    RichTextBox1.AppendText(Environment.NewLine)
+                    RichTextBox1.AppendText($"Creating directory {save_to}\Mac")
+                    Directory.CreateDirectory(save_to & "\Mac")
                     For Each link In mac_downloads
                         downloaded += 1
                         Dim qs = New Uri(link).Query
@@ -214,17 +204,13 @@ Public Class Form1
                             Continue For
                         End If
                         Dim this_filename = Path.GetFileName(New Uri(this_dl).LocalPath)
+                        this_filepath = $"{save_to}\Mac\{this_filename}"
                         RichTextBox1.AppendText(Environment.NewLine)
                         RichTextBox1.AppendText($"Starting download for {this_filename} (Mac)")
                         AddHandler wc.DownloadProgressChanged, AddressOf DownloadProgressChanged
                         AddHandler wc.DownloadFileCompleted, AddressOf DownloadProgressCompleted
-                        If String.IsNullOrEmpty(save_to) Then
-                            Await wc.DownloadFileTaskAsync(New Uri(this_dl), My.Application.Info.DirectoryPath & $"\Mac\{this_filename}")
-                            wc.Dispose()
-                        Else
-                            Await wc.DownloadFileTaskAsync(New Uri(this_dl), save_to & $"\Mac\{this_filename}")
-                            wc.Dispose()
-                        End If
+                        Await wc.DownloadFileTaskAsync(New Uri(this_dl), this_filepath)
+                        wc.Dispose()
                         RichTextBox1.AppendText(Environment.NewLine)
                         RichTextBox1.AppendText($"I've downloaded {downloaded} / {mac_links} files, {mac_links - downloaded} files left")
                     Next
@@ -232,15 +218,9 @@ Public Class Form1
                     downloads_to_complete = lin_links
                     RichTextBox1.AppendText(Environment.NewLine)
                     RichTextBox1.AppendText($"There are {lin_links} files for me to download")
-                    If String.IsNullOrEmpty(save_to) Then
-                        RichTextBox1.AppendText(Environment.NewLine)
-                        RichTextBox1.AppendText($"Creating directory {My.Application.Info.DirectoryPath}\Linux")
-                        Directory.CreateDirectory(My.Application.Info.DirectoryPath & "\Linux")
-                    Else
-                        RichTextBox1.AppendText(Environment.NewLine)
-                        RichTextBox1.AppendText($"Creating directory {save_to}\Linux")
-                        Directory.CreateDirectory(save_to & "\Linux")
-                    End If
+                    RichTextBox1.AppendText(Environment.NewLine)
+                    RichTextBox1.AppendText($"Creating directory {save_to}\Linux")
+                    Directory.CreateDirectory(save_to & "\Linux")
                     For Each link In lin_downloads
                         downloaded += 1
                         Dim qs = New Uri(link).Query
@@ -257,18 +237,13 @@ Public Class Form1
                             Continue For
                         End If
                         Dim this_filename = Path.GetFileName(New Uri(this_dl).LocalPath)
+                        this_filepath = $"{save_to}\Linux\{this_filename}"
                         RichTextBox1.AppendText(Environment.NewLine)
                         RichTextBox1.AppendText($"Starting download for {this_filename} (Linux)")
                         AddHandler wc.DownloadProgressChanged, AddressOf DownloadProgressChanged
                         AddHandler wc.DownloadFileCompleted, AddressOf DownloadProgressCompleted
-                        If String.IsNullOrEmpty(save_to) Then
-                            Await wc.DownloadFileTaskAsync(New Uri(this_dl), My.Application.Info.DirectoryPath & $"\Linux\{this_filename}")
-                            wc.Dispose()
-                        Else
-                            Await wc.DownloadFileTaskAsync(New Uri(this_dl), save_to & $"\Linux\{this_filename}")
-                            wc.Dispose()
-                        End If
-
+                        Await wc.DownloadFileTaskAsync(New Uri(this_dl), this_filepath)
+                        wc.Dispose()
                         RichTextBox1.AppendText(Environment.NewLine)
                         RichTextBox1.AppendText($"I've downloaded {downloaded} / {lin_links} files, {lin_links - downloaded} files left")
                     Next
@@ -276,33 +251,15 @@ Public Class Form1
                     downloads_to_complete = all_links
                     RichTextBox1.AppendText(Environment.NewLine)
                     RichTextBox1.AppendText($"There are {all_links} files for me to download")
-                    If String.IsNullOrEmpty(save_to) Then
-                        RichTextBox1.AppendText(Environment.NewLine)
-                        RichTextBox1.AppendText($"Creating directory {My.Application.Info.DirectoryPath}\Windows")
-                        Directory.CreateDirectory(My.Application.Info.DirectoryPath & "\Windows")
-                    Else
-                        RichTextBox1.AppendText(Environment.NewLine)
-                        RichTextBox1.AppendText($"Creating directory {save_to}\Windows")
-                        Directory.CreateDirectory(save_to & "\Windows")
-                    End If
-                    If String.IsNullOrEmpty(save_to) Then
-                        RichTextBox1.AppendText(Environment.NewLine)
-                        RichTextBox1.AppendText($"Creating directory {My.Application.Info.DirectoryPath}\Mac")
-                        Directory.CreateDirectory(My.Application.Info.DirectoryPath & "\Mac")
-                    Else
-                        RichTextBox1.AppendText(Environment.NewLine)
-                        RichTextBox1.AppendText($"Creating directory {save_to}\Mac")
-                        Directory.CreateDirectory(save_to & "\Mac")
-                    End If
-                    If String.IsNullOrEmpty(save_to) Then
-                        RichTextBox1.AppendText(Environment.NewLine)
-                        RichTextBox1.AppendText($"Creating directory {My.Application.Info.DirectoryPath}\Linux")
-                        Directory.CreateDirectory(My.Application.Info.DirectoryPath & "\Linux")
-                    Else
-                        RichTextBox1.AppendText(Environment.NewLine)
-                        RichTextBox1.AppendText($"Creating directory {save_to}\Linux")
-                        Directory.CreateDirectory(save_to & "\Linux")
-                    End If
+                    RichTextBox1.AppendText(Environment.NewLine)
+                    RichTextBox1.AppendText($"Creating directory {save_to}\Windows")
+                    Directory.CreateDirectory(save_to & "\Windows")
+                    RichTextBox1.AppendText(Environment.NewLine)
+                    RichTextBox1.AppendText($"Creating directory {save_to}\Mac")
+                    Directory.CreateDirectory(save_to & "\Mac")
+                    RichTextBox1.AppendText(Environment.NewLine)
+                    RichTextBox1.AppendText($"Creating directory {save_to}\Linux")
+                    Directory.CreateDirectory(save_to & "\Linux")
 
                     For Each link In win_downloads
                         downloaded += 1
@@ -320,17 +277,13 @@ Public Class Form1
                             Continue For
                         End If
                         Dim this_filename = Path.GetFileName(New Uri(this_dl).LocalPath)
+                        this_filepath = $"{save_to}\Windows\{this_filename}"
                         RichTextBox1.AppendText(Environment.NewLine)
                         RichTextBox1.AppendText($"Starting download for {this_filename} (Windows)")
                         AddHandler wc.DownloadProgressChanged, AddressOf DownloadProgressChanged
                         AddHandler wc.DownloadFileCompleted, AddressOf DownloadProgressCompleted
-                        If String.IsNullOrEmpty(save_to) Then
-                            Await wc.DownloadFileTaskAsync(New Uri(this_dl), My.Application.Info.DirectoryPath & $"\Windows\{this_filename}")
-                            wc.Dispose()
-                        Else
-                            Await wc.DownloadFileTaskAsync(New Uri(this_dl), save_to & $"\Windows\{this_filename}")
-                            wc.Dispose()
-                        End If
+                        Await wc.DownloadFileTaskAsync(New Uri(this_dl), this_filepath)
+                        wc.Dispose()
                         RichTextBox1.AppendText(Environment.NewLine)
                         RichTextBox1.AppendText($"I've downloaded {downloaded} / {all_links} files, {all_links - downloaded} files left")
                     Next
@@ -350,17 +303,13 @@ Public Class Form1
                             Continue For
                         End If
                         Dim this_filename = Path.GetFileName(New Uri(this_dl).LocalPath)
+                        this_filepath = $"{save_to}\Mac\{this_filename}"
                         RichTextBox1.AppendText(Environment.NewLine)
                         RichTextBox1.AppendText($"Starting download for {this_filename} (Mac)")
                         AddHandler wc.DownloadProgressChanged, AddressOf DownloadProgressChanged
                         AddHandler wc.DownloadFileCompleted, AddressOf DownloadProgressCompleted
-                        If String.IsNullOrEmpty(save_to) Then
-                            Await wc.DownloadFileTaskAsync(New Uri(this_dl), My.Application.Info.DirectoryPath & $"\Mac\{this_filename}")
-                            wc.Dispose()
-                        Else
-                            Await wc.DownloadFileTaskAsync(New Uri(this_dl), save_to & $"\Mac\{this_filename}")
-                            wc.Dispose()
-                        End If
+                        Await wc.DownloadFileTaskAsync(New Uri(this_dl), this_filepath)
+                        wc.Dispose()
                         RichTextBox1.AppendText(Environment.NewLine)
                         RichTextBox1.AppendText($"I've downloaded {downloaded} / {all_links} files, {all_links - downloaded} files left")
                     Next
@@ -380,17 +329,13 @@ Public Class Form1
                             Continue For
                         End If
                         Dim this_filename = Path.GetFileName(New Uri(this_dl).LocalPath)
+                        this_filepath = $"{save_to}\Windows\{this_filename}"
                         RichTextBox1.AppendText(Environment.NewLine)
                         RichTextBox1.AppendText($"Starting download for {this_filename} (Linux)")
                         AddHandler wc.DownloadProgressChanged, AddressOf DownloadProgressChanged
                         AddHandler wc.DownloadFileCompleted, AddressOf DownloadProgressCompleted
-                        If String.IsNullOrEmpty(save_to) Then
-                            Await wc.DownloadFileTaskAsync(New Uri(this_dl), My.Application.Info.DirectoryPath & $"\Linux\{this_filename}")
-                            wc.Dispose()
-                        Else
-                            Await wc.DownloadFileTaskAsync(New Uri(this_dl), save_to & $"\Linux\{this_filename}")
-                            wc.Dispose()
-                        End If
+                        Await wc.DownloadFileTaskAsync(New Uri(this_dl), this_filepath)
+                        wc.Dispose()
                         RichTextBox1.AppendText(Environment.NewLine)
                         RichTextBox1.AppendText($"I've downloaded {downloaded} / {all_links} files, {all_links - downloaded} files left")
                     Next
@@ -402,6 +347,9 @@ Public Class Form1
         ProgressBar1.Value = e.ProgressPercentage
     End Sub
     Public Sub DownloadProgressCompleted(sender As Object, e As EventArgs)
+
+        File.SetLastWriteTime(this_filepath, wc.ResponseHeaders("Last-Modified"))
+
         If downloaded = downloads_to_complete Then
             win_downloads = New List(Of String)
             mac_downloads = New List(Of String)
