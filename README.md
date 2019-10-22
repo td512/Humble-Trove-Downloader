@@ -74,4 +74,4 @@ If you have any ideas on how to improve this, submit a PR, PM me on reddit (/u/t
 # Contributions
 
 A big thank you to [Advanced Installer](https://www.advancedinstaller.com) for providing a license for their application. Without that, the installation wouldn't quite be so simple
-![Advanced Installer](/contrib/contrib_logo_ai.png?raw=true =200x)
+![Advanced Installer](https://github.com/td512/Humble-Trove-Downloader/blob/master/contrib/contrib_logo_ai.png =200x)
