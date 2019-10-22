@@ -44,7 +44,7 @@ The program takes 4 arguments:
 
 ### FAQ
 
- * The application in bin/Release is only 1,106KB. Surely this can't be the entire application, can it?
+ * The application in bin/Release is only 1, 216KB. Surely this can't be the entire application, can it?
  
 
 > Believe it or not, that's the entire application.

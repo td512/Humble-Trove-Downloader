@@ -54,8 +54,8 @@
     <ApplicationIcon>trove.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Humble.Helper">
-      <HintPath>.\Humble.Helper.dll</HintPath>
+    <Reference Include="Humble Helper">
+      <HintPath>.\Humble Helper.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\WindowsAPICodePack-Core.1.1.2\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
@@ -153,6 +153,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Humble Helper.dll" />
     <Content Include="logo.png" />
     <Content Include="trove.ico" />
     <Content Include="trove.png" />

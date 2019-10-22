@@ -18,4 +18,4 @@ M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\obj\Release\Humble Tro
 M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\obj\Release\Humble Trove Downloader.pdb
 M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\obj\Release\Humble Trove Downloader.vbprojAssemblyReference.cache
 M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\obj\Release\Humble_Trove_Downloader.WebView.resources
-M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\bin\Release\Humble.Helper.dll
+M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\bin\Release\Humble Helper.dll

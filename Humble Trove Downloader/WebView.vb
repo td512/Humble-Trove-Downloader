@@ -37,16 +37,15 @@ Public Class WebView
         rk.SetValue("2201", 0, RegistryValueKind.DWord)
         rk.SetValue("2301", 3, RegistryValueKind.DWord)
         rk.SetValue("2702", 3, RegistryValueKind.DWord)
-        AddHandler WebBrowser1.DocumentCompleted, AddressOf navigate_event
 
     End Sub
 
-    Public Sub navigate_event(sender As Object, e As WebBrowserDocumentCompletedEventArgs)
+    Private Sub WebBrowser1_DocumentCompleted(sender As Object, e As WebBrowserDocumentCompletedEventArgs) Handles WebBrowser1.DocumentCompleted
         If Path.GetFileName(New Uri(WebBrowser1.Url.AbsoluteUri).LocalPath) = "library" Then
             Dim result = WebHelper.GetGlobalCookies(WebBrowser1.Url.AbsoluteUri)
             Dim baseSessionKey = result.Split(",")(0)
             sessionCookie = baseSessionKey.Split("=")(1)
-            Humble_Trove_Downloader.Form1.BreakOut()
+            Form1.BreakOut()
         End If
     End Sub
 End Class

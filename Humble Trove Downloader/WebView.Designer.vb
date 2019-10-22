@@ -28,6 +28,7 @@ Partial Class WebView
         '
         'WebBrowser1
         '
+        Me.WebBrowser1.AllowNavigation = False
         Me.WebBrowser1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.WebBrowser1.Location = New System.Drawing.Point(0, 0)
         Me.WebBrowser1.MinimumSize = New System.Drawing.Size(20, 20)
@@ -35,7 +36,7 @@ Partial Class WebView
         Me.WebBrowser1.ScriptErrorsSuppressed = True
         Me.WebBrowser1.Size = New System.Drawing.Size(1008, 729)
         Me.WebBrowser1.TabIndex = 0
-        Me.WebBrowser1.Url = New System.Uri("https://www.humblebundle.com/login", System.UriKind.Absolute)
+        Me.WebBrowser1.Url = New System.Uri("https://www.humblebundle.com/home/library", System.UriKind.Absolute)
         '
         'WebView
         '
