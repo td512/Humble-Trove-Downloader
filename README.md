@@ -52,6 +52,10 @@ The program takes 4 arguments:
 
 > The trove downloader takes a bit to start up because it's downloading the list of games from Humble Bundle. Don't worry, it should pop up within about 30 seconds
 
+* Why is the installer so big if the application is only 1MB or so?
+
+> The installer you're downloading from the CDN includes the prerequisite .NET 4.6 installer, as well as a font, and a few library the application needs
+
 * It crashed! Help!
 
 > File an issue [here](https://github.com/td512/Humble-Trove-Downloader/issues) and I'll take a look. If you've got the .NET stack trace, please include that in your report
