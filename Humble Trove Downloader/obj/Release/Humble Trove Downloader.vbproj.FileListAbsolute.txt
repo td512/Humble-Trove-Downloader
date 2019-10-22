@@ -11,3 +11,7 @@ M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\obj\Release\Humble Tro
 M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\obj\Release\Humble Trove Downloader.exe
 M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\obj\Release\Humble Trove Downloader.xml
 M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\obj\Release\Humble Trove Downloader.pdb
+M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\bin\Release\Microsoft.WindowsAPICodePack.dll
+M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\bin\Release\Microsoft.WindowsAPICodePack.Shell.dll
+M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\bin\Release\Microsoft.WindowsAPICodePack.xml
+M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\bin\Release\Microsoft.WindowsAPICodePack.Shell.xml

@@ -11,3 +11,7 @@ M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\obj\Debug\Humble Trove
 M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\obj\Debug\Humble_Trove_Downloader.Form1.resources
 M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\bin\Debug\Newtonsoft.Json.dll
 M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\obj\Debug\Humble Trove Downloader.vbproj.CopyComplete
+M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\bin\Debug\Microsoft.WindowsAPICodePack.dll
+M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
+M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\bin\Debug\Microsoft.WindowsAPICodePack.xml
+M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml

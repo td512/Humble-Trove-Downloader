@@ -3,6 +3,7 @@ Imports System.Net
 Imports System.Threading
 Imports Newtonsoft.Json
 Imports Newtonsoft.Json.Linq
+Imports Microsoft.WindowsAPICodePack.Taskbar
 Public Class Form1
 
     Public baseuri = "https://www.humblebundle.com/api/v1/trove/chunk?index="
@@ -97,6 +98,7 @@ Public Class Form1
         If String.IsNullOrEmpty(TextBox1.Text) Then
             Panel1.BackColor = Color.Red
         Else
+            TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Normal)
             Label1.Visible = True
             Label2.Visible = False
             RadioButton1.Visible = False
@@ -349,8 +351,10 @@ Public Class Form1
     Public Sub DownloadProgressCompleted(sender As Object, e As EventArgs)
 
         File.SetLastWriteTime(this_filepath, wc.ResponseHeaders("Last-Modified"))
+        TaskbarManager.Instance.SetProgressValue((downloaded / downloads_to_complete) * 100, 100)
 
         If downloaded = downloads_to_complete Then
+            TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress)
             win_downloads = New List(Of String)
             mac_downloads = New List(Of String)
             lin_downloads = New List(Of String)
