@@ -26,7 +26,6 @@ Partial Class Form1
         Me.Label1 = New System.Windows.Forms.Label()
         Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
         Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.RadioButton1 = New System.Windows.Forms.RadioButton()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.RadioButton2 = New System.Windows.Forms.RadioButton()
@@ -42,10 +41,13 @@ Partial Class Form1
         Me.RadioButton6 = New System.Windows.Forms.RadioButton()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Panel1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -75,15 +77,6 @@ Partial Class Form1
         Me.RichTextBox1.TabIndex = 2
         Me.RichTextBox1.Text = ""
         '
-        'PictureBox1
-        '
-        Me.PictureBox1.Image = Global.Humble_Trove_Downloader.My.Resources.Resources.logo
-        Me.PictureBox1.Location = New System.Drawing.Point(226, 12)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(340, 65)
-        Me.PictureBox1.TabIndex = 3
-        Me.PictureBox1.TabStop = False
-        '
         'RadioButton1
         '
         Me.RadioButton1.AutoSize = True
@@ -101,7 +94,7 @@ Partial Class Form1
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("SF Pro Display", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(341, 95)
+        Me.Label2.Location = New System.Drawing.Point(222, 96)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(113, 23)
         Me.Label2.TabIndex = 5
@@ -238,11 +231,41 @@ Partial Class Form1
         Me.GroupBox2.Text = "Download Type"
         Me.GroupBox2.Visible = False
         '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("SF Pro Display", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(376, 96)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(16, 23)
+        Me.Label4.TabIndex = 18
+        Me.Label4.Text = "|"
+        '
+        'Button3
+        '
+        Me.Button3.Location = New System.Drawing.Point(417, 98)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(149, 23)
+        Me.Button3.TabIndex = 19
+        Me.Button3.Text = "Log In with Humble Bundle"
+        Me.Button3.UseVisualStyleBackColor = True
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Image = Global.Humble_Trove_Downloader.My.Resources.Resources.logo
+        Me.PictureBox1.Location = New System.Drawing.Point(226, 12)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(340, 65)
+        Me.PictureBox1.TabIndex = 3
+        Me.PictureBox1.TabStop = False
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.Button3)
+        Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Button2)
@@ -260,13 +283,13 @@ Partial Class Form1
         Me.MinimumSize = New System.Drawing.Size(816, 489)
         Me.Name = "Form1"
         Me.Text = "Humble Trove Downloader"
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -291,4 +314,6 @@ Partial Class Form1
     Friend WithEvents RadioButton6 As RadioButton
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents GroupBox2 As GroupBox
+    Friend WithEvents Label4 As Label
+    Friend WithEvents Button3 As Button
 End Class

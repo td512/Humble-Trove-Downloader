@@ -15,3 +15,7 @@ M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\bin\Debug\Microsoft.Wi
 M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
 M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\bin\Debug\Microsoft.WindowsAPICodePack.xml
 M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml
+M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\bin\Debug\Syroot.KnownFolders.dll
+M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\bin\Debug\Syroot.KnownFolders.xml
+M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\obj\Debug\Humble_Trove_Downloader.WebView.resources
+M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\bin\Debug\Humble Helper.dll

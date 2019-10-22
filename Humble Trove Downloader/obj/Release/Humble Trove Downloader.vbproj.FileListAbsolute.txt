@@ -2,8 +2,13 @@ M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\bin\Release\Humble Tro
 M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\bin\Release\Humble Trove Downloader.exe
 M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\bin\Release\Humble Trove Downloader.pdb
 M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\bin\Release\Humble Trove Downloader.xml
+M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\bin\Release\Microsoft.WindowsAPICodePack.dll
+M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\bin\Release\Microsoft.WindowsAPICodePack.Shell.dll
 M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\bin\Release\Newtonsoft.Json.dll
-M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\obj\Release\Humble Trove Downloader.vbprojAssemblyReference.cache
+M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\bin\Release\Syroot.KnownFolders.dll
+M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\bin\Release\Microsoft.WindowsAPICodePack.xml
+M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\bin\Release\Microsoft.WindowsAPICodePack.Shell.xml
+M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\bin\Release\Syroot.KnownFolders.xml
 M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\obj\Release\Humble_Trove_Downloader.Form1.resources
 M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\obj\Release\Humble_Trove_Downloader.Resources.resources
 M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\obj\Release\Humble Trove Downloader.vbproj.GenerateResource.cache
@@ -11,7 +16,6 @@ M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\obj\Release\Humble Tro
 M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\obj\Release\Humble Trove Downloader.exe
 M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\obj\Release\Humble Trove Downloader.xml
 M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\obj\Release\Humble Trove Downloader.pdb
-M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\bin\Release\Microsoft.WindowsAPICodePack.dll
-M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\bin\Release\Microsoft.WindowsAPICodePack.Shell.dll
-M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\bin\Release\Microsoft.WindowsAPICodePack.xml
-M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\bin\Release\Microsoft.WindowsAPICodePack.Shell.xml
+M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\obj\Release\Humble Trove Downloader.vbprojAssemblyReference.cache
+M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\obj\Release\Humble_Trove_Downloader.WebView.resources
+M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\bin\Release\Humble.Helper.dll
