@@ -1,4 +1,5 @@
 
+
 # Trove Downloader
 
 This program is to download all the items in the Humble Bundle Trove. The code is a mess, but it works, and is relatively efficient at what it does (using a total of 20MB of RAM during the entire process)
@@ -67,3 +68,10 @@ The program takes 4 arguments:
 I also plan to add Mac support, but for now, this will do.
 
 If you have any ideas on how to improve this, submit a PR, PM me on reddit (/u/td512) or ping me on discord (TheoM#0331)
+
+****
+
+# Contributions
+
+A big thank you to [Advanced Installer](https://www.advancedinstaller.com) for providing a license for their application. Without that, the installation wouldn't quite be so simple
+![Advanced Installer](/contrib/contrib_logo_ai.png?raw=true =200x)
