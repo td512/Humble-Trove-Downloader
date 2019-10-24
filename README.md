@@ -17,7 +17,7 @@ This program is to download all the items in the Humble Bundle Trove. The code i
 
 If you have Visual Studio then you can compile it yourself.  
 If you don't, the built installer is below.  
-* [Windows](https://ltscdn.m6.nz/humble/trove-downloader.exe?version=1.3.2)
+* [Windows](https://ltscdn.m6.nz/humble/trove-downloader.exe?version=1.4.2&utm_source=htd-github)
 
 Put the files where-ever you want and move onto the next part.
 
@@ -44,7 +44,7 @@ The program takes 4 arguments:
 
 ### FAQ
 
- * The application in bin/Release is only 1, 216KB. Surely this can't be the entire application, can it?
+ * The application in bin/Release is only 1,216KB. Surely this can't be the entire application, can it?
  
 
 > Believe it or not, that's the entire application.
