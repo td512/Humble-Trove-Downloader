@@ -104,7 +104,7 @@ Public Class Form1
     Public download = ""
     Public download_type = ""
     Public session_key = ""
-    Public save_to = KnownFolders.Downloads.Path.ToString
+    Public save_to
     Public win_downloads = New List(Of String)
     Public mac_downloads = New List(Of String)
     Public lin_downloads = New List(Of String)
@@ -163,6 +163,8 @@ Public Class Form1
 
             Label1.Visible = False
             Label2.Visible = True
+            Label3.Visible = True
+            Label4.Visible = True
             RadioButton1.Visible = True
             RadioButton2.Visible = True
             RadioButton3.Visible = True
@@ -172,6 +174,7 @@ Public Class Form1
             TextBox1.Visible = True
             Button1.Visible = True
             Button2.Visible = True
+            Button3.Visible = True
             Label3.Visible = True
             ProgressBar1.Visible = False
             GroupBox1.Visible = True
@@ -203,9 +206,11 @@ Public Class Form1
             RadioButton6.Visible = False
             Button2.Visible = False
             Label3.Visible = False
+            Label4.Visible = False
             TextBox1.Visible = False
             Button1.Visible = False
             Button2.Visible = False
+            Button3.Visible = False
             ProgressBar1.Visible = True
             GroupBox1.Visible = False
             GroupBox2.Visible = False
@@ -451,6 +456,8 @@ Public Class Form1
             downloaded = 0
             Label1.Visible = False
             Label2.Visible = True
+            Label3.Visible = True
+            Label4.Visible = True
             RadioButton1.Visible = True
             RadioButton2.Visible = True
             RadioButton3.Visible = True
@@ -460,10 +467,12 @@ Public Class Form1
             TextBox1.Visible = True
             Button1.Visible = True
             Button2.Visible = True
+            Button3.Visible = True
             Label3.Visible = True
             ProgressBar1.Visible = False
             GroupBox1.Visible = True
             GroupBox2.Visible = True
+
         End If
     End Sub
 
@@ -481,8 +490,10 @@ Public Class Form1
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         If FolderBrowserDialog1.ShowDialog() = DialogResult.OK Then
+            Dim rk = Registry.CurrentUser.OpenSubKey("Software\Trove Downloader", True)
             Label3.Text = FolderBrowserDialog1.SelectedPath
             save_to = FolderBrowserDialog1.SelectedPath
+            rk.SetValue("last_saved", save_to, RegistryValueKind.String)
             RichTextBox1.AppendText(Environment.NewLine)
             RichTextBox1.AppendText($"New save location set ({save_to})")
         End If
@@ -500,6 +511,13 @@ Public Class Form1
             rk.SetValue("WBV", 1, RegistryValueKind.DWord)
             Process.Start(My.Application.Info.DirectoryPath & "\Humble Trove Downloader.exe")
             Close()
+        End If
+        If rk.GetValue("last_saved") Is Nothing Then
+            save_to = KnownFolders.Downloads.Path.ToString
+            rk.SetValue("last_saved", KnownFolders.Downloads.Path.ToString, RegistryValueKind.String)
+        Else
+            save_to = rk.GetValue("last_saved")
+            Label3.Text = save_to
         End If
     End Sub
 

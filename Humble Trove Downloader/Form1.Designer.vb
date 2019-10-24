@@ -240,6 +240,7 @@ Partial Class Form1
         Me.Label4.Size = New System.Drawing.Size(16, 23)
         Me.Label4.TabIndex = 18
         Me.Label4.Text = "|"
+        Me.Label4.Visible = False
         '
         'Button3
         '
@@ -249,6 +250,7 @@ Partial Class Form1
         Me.Button3.TabIndex = 19
         Me.Button3.Text = "Log In with Humble Bundle"
         Me.Button3.UseVisualStyleBackColor = True
+        Me.Button3.Visible = False
         '
         'PictureBox1
         '
