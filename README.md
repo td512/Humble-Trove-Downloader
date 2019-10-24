@@ -2,7 +2,7 @@
 
 # Trove Downloader
 
-This program is to download all the items in the Humble Bundle Trove. The code is a mess, but it works, and is relatively efficient at what it does (using a total of 20MB of RAM during the entire process)
+This program is to download all the items in the Humble Bundle Trove. The code is a mess, but it works, and is relatively efficient at what it does (using a total of 20MB of RAM during the entire process - if you use the autologin expect around 100MB due to Internet Explorer)
 
 *****
 # How it works
@@ -17,9 +17,9 @@ This program is to download all the items in the Humble Bundle Trove. The code i
 
 If you have Visual Studio then you can compile it yourself.  
 If you don't, the built installer is below.  
-* [Windows](https://ltscdn.m6.nz/humble/trove-downloader.exe?version=1.4.2&utm_source=htd-github)
+* [Windows](https://ltscdn.m6.nz/humble/trove-downloader.exe?version=1.5.0&utm_source=htd-github)
 
-Put the files where-ever you want and move onto the next part.
+* If you built the application, in `bin\Release` will be the downloader. Run that, and continue on!
 
 ****
 
@@ -27,7 +27,12 @@ Put the files where-ever you want and move onto the next part.
 
 ### Session Key
 
+#### /!\ No longer needed /!\
 You will need to get a session key, [Instructions here](https://github.com/talonius/hb-downloader/wiki/Using-Session-Information-From-Windows-For-hb-downloader)
+
+#### Tired of copying and pasting your session key? 
+Using the `Login with Humble Bundle` button in the application the above is no longer needed
+
 
 ### Arguments
 
@@ -44,14 +49,14 @@ The program takes 4 arguments:
 
 ### FAQ
 
- * The application in bin/Release is only 1,216KB. Surely this can't be the entire application, can it?
+ * The application in bin/Release is only 1,219KB. Surely this can't be the entire application, can it?
  
 
 > Believe it or not, that's the entire application.
 
 * Why is it taking so long to start up?
 
-> The trove downloader takes a bit to start up because it's downloading the list of games from Humble Bundle. Don't worry, it should pop up within about 30 seconds
+> The trove downloader takes a bit to start up because it's downloading the list of games from Humble Bundle. Don't worry, it should pop up within about 30 seconds. This occurs only in versions prior to 1.5.0
 
 * Why is the installer so big if the application is only 1MB or so?
 
