@@ -1,0 +1,3 @@
+[submodule "Humble-Trove-Console-Downloader"]
+	path = Humble-Trove-Console-Downloader
+	url = https://github.com/td512/Humble-Trove-Console-Downloader
