@@ -37,6 +37,18 @@ Public Class WebView
         rk.SetValue("2201", 0, RegistryValueKind.DWord)
         rk.SetValue("2301", 3, RegistryValueKind.DWord)
         rk.SetValue("2702", 3, RegistryValueKind.DWord)
+        rk = Registry.CurrentUser.CreateSubKey("Software\Trove Downloader")
+        If rk.GetValue("reCAPTCHAIsABitch") = 0 Then
+            Dim result As DialogResult = MessageBox.Show("reCAPTCHA could take up to 60 seconds to appear. Be patient, it will appear" &
+                                                     vbCrLf & "Would you like to be reminded again next time?",
+                                                     "reCAPTCHA Warning",
+                                                     MessageBoxButtons.YesNo,
+                                                     MessageBoxIcon.Exclamation,
+                                                     MessageBoxDefaultButton.Button1)
+            If result = DialogResult.No Then
+                rk.SetValue("reCAPTCHAIsABitch", 1, RegistryValueKind.DWord)
+            End If
+        End If
 
     End Sub
 
