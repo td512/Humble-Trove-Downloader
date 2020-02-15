@@ -175,7 +175,7 @@ Public Class Form1
                         Dim qs = New Uri(link).Query
                         Dim qd = Web.HttpUtility.ParseQueryString(qs)
                         Dim download_urls = PostURL(link, qd("machine_name"), qd("filename"))
-                        If (download_urls Is Nothing) Or (download_urls.Substring(0, 7) = "<!docty") Then
+                        If download_urls Is Nothing Then
                             RichTextBox1.AppendText(Environment.NewLine)
                             RichTextBox1.AppendText("Download Failed (Not Subscribed)")
                             TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress)
@@ -236,7 +236,7 @@ Public Class Form1
                         Dim qs = New Uri(link).Query
                         Dim qd = Web.HttpUtility.ParseQueryString(qs)
                         Dim download_urls = PostURL(link, qd("machine_name"), qd("filename"))
-                        If (download_urls Is Nothing) Or (download_urls.Substring(0, 7) = "<!docty") Then
+                        If download_urls Is Nothing Then
                             RichTextBox1.AppendText(Environment.NewLine)
                             RichTextBox1.AppendText("Download Failed (Not Subscribed)")
                             TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress)
@@ -297,7 +297,7 @@ Public Class Form1
                         Dim qs = New Uri(link).Query
                         Dim qd = Web.HttpUtility.ParseQueryString(qs)
                         Dim download_urls = PostURL(link, qd("machine_name"), qd("filename"))
-                        If (download_urls Is Nothing) Or (download_urls.Substring(0, 7) = "<!docty") Then
+                        If download_urls Is Nothing Then
                             RichTextBox1.AppendText(Environment.NewLine)
                             RichTextBox1.AppendText("Download Failed (Not Subscribed)")
                             TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress)
@@ -365,7 +365,7 @@ Public Class Form1
                         Dim qs = New Uri(link).Query
                         Dim qd = Web.HttpUtility.ParseQueryString(qs)
                         Dim download_urls = PostURL(link, qd("machine_name"), qd("filename"))
-                        If (download_urls Is Nothing) Or (download_urls.Substring(0, 7) = "<!docty") Then
+                        If download_urls Is Nothing Then
                             RichTextBox1.AppendText(Environment.NewLine)
                             RichTextBox1.AppendText("Download Failed (Not Subscribed)")
                             TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress)
@@ -419,7 +419,7 @@ Public Class Form1
                         Dim qs = New Uri(link).Query
                         Dim qd = Web.HttpUtility.ParseQueryString(qs)
                         Dim download_urls = PostURL(link, qd("machine_name"), qd("filename"))
-                        If (download_urls Is Nothing) Or (download_urls.Substring(0, 7) = "<!docty") Then
+                        If download_urls Is Nothing Then
                             RichTextBox1.AppendText(Environment.NewLine)
                             RichTextBox1.AppendText("Download Failed (Not Subscribed)")
                             TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress)
@@ -473,7 +473,7 @@ Public Class Form1
                         Dim qs = New Uri(link).Query
                         Dim qd = Web.HttpUtility.ParseQueryString(qs)
                         Dim download_urls = PostURL(link, qd("machine_name"), qd("filename"))
-                        If (download_urls Is Nothing) Or (download_urls.Substring(0, 7) = "<!docty") Then
+                        If download_urls Is Nothing Then
                             RichTextBox1.AppendText(Environment.NewLine)
                             RichTextBox1.AppendText("Download Failed (Not Subscribed)")
                             TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress)
@@ -568,7 +568,13 @@ Public Class Form1
         reqparm.Add("machine_name", machine_name)
         reqparm.Add("filename", filename)
         client.Headers.Set("cookie", $"_simpleauth_sess={session_key}")
-        Dim responsebytes = client.UploadValues(url, "POST", reqparm)
+        Dim responsebytes As Byte()
+        Try
+            responsebytes = client.UploadValues(url, "POST", reqparm)
+        Catch ex As WebException
+            client.Dispose()
+            Return Nothing
+        End Try
         If responsebytes Is Nothing Then
             client.Dispose()
             Return Nothing
