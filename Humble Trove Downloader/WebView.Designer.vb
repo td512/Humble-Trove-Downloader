@@ -28,7 +28,6 @@ Partial Class WebView
         '
         'WebBrowser1
         '
-        Me.WebBrowser1.AllowNavigation = False
         Me.WebBrowser1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.WebBrowser1.Location = New System.Drawing.Point(0, 0)
         Me.WebBrowser1.MinimumSize = New System.Drawing.Size(20, 20)
