@@ -175,6 +175,34 @@ Public Class Form1
                         Dim qs = New Uri(link).Query
                         Dim qd = Web.HttpUtility.ParseQueryString(qs)
                         Dim download_urls = PostURL(link, qd("machine_name"), qd("filename"))
+                        If (download_urls Is Nothing) Or (download_urls.Substring(0, 7) = "<!docty") Then
+                            RichTextBox1.AppendText(Environment.NewLine)
+                            RichTextBox1.AppendText("Download Failed (Not Subscribed)")
+                            TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress)
+                            win_downloads = New List(Of String)
+                            mac_downloads = New List(Of String)
+                            lin_downloads = New List(Of String)
+                            downloaded = 0
+                            Label1.Visible = False
+                            Label2.Visible = True
+                            Label3.Visible = True
+                            Label4.Visible = True
+                            RadioButton1.Visible = True
+                            RadioButton2.Visible = True
+                            RadioButton3.Visible = True
+                            RadioButton4.Visible = True
+                            RadioButton5.Visible = True
+                            RadioButton6.Visible = True
+                            TextBox1.Visible = True
+                            Button1.Visible = True
+                            Button2.Visible = True
+                            Button3.Visible = True
+                            Label3.Visible = True
+                            ProgressBar1.Visible = False
+                            GroupBox1.Visible = True
+                            GroupBox2.Visible = True
+                            Exit For
+                        End If
                         Dim downloads = JObject.Parse(download_urls)
                         Dim this_dl = ""
                         If download_type = "Direct" Then
@@ -208,6 +236,34 @@ Public Class Form1
                         Dim qs = New Uri(link).Query
                         Dim qd = Web.HttpUtility.ParseQueryString(qs)
                         Dim download_urls = PostURL(link, qd("machine_name"), qd("filename"))
+                        If (download_urls Is Nothing) Or (download_urls.Substring(0, 7) = "<!docty") Then
+                            RichTextBox1.AppendText(Environment.NewLine)
+                            RichTextBox1.AppendText("Download Failed (Not Subscribed)")
+                            TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress)
+                            win_downloads = New List(Of String)
+                            mac_downloads = New List(Of String)
+                            lin_downloads = New List(Of String)
+                            downloaded = 0
+                            Label1.Visible = False
+                            Label2.Visible = True
+                            Label3.Visible = True
+                            Label4.Visible = True
+                            RadioButton1.Visible = True
+                            RadioButton2.Visible = True
+                            RadioButton3.Visible = True
+                            RadioButton4.Visible = True
+                            RadioButton5.Visible = True
+                            RadioButton6.Visible = True
+                            TextBox1.Visible = True
+                            Button1.Visible = True
+                            Button2.Visible = True
+                            Button3.Visible = True
+                            Label3.Visible = True
+                            ProgressBar1.Visible = False
+                            GroupBox1.Visible = True
+                            GroupBox2.Visible = True
+                            Exit For
+                        End If
                         Dim downloads = JObject.Parse(download_urls)
                         Dim this_dl = ""
                         If download_type = "Direct" Then
@@ -241,6 +297,34 @@ Public Class Form1
                         Dim qs = New Uri(link).Query
                         Dim qd = Web.HttpUtility.ParseQueryString(qs)
                         Dim download_urls = PostURL(link, qd("machine_name"), qd("filename"))
+                        If (download_urls Is Nothing) Or (download_urls.Substring(0, 7) = "<!docty") Then
+                            RichTextBox1.AppendText(Environment.NewLine)
+                            RichTextBox1.AppendText("Download Failed (Not Subscribed)")
+                            TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress)
+                            win_downloads = New List(Of String)
+                            mac_downloads = New List(Of String)
+                            lin_downloads = New List(Of String)
+                            downloaded = 0
+                            Label1.Visible = False
+                            Label2.Visible = True
+                            Label3.Visible = True
+                            Label4.Visible = True
+                            RadioButton1.Visible = True
+                            RadioButton2.Visible = True
+                            RadioButton3.Visible = True
+                            RadioButton4.Visible = True
+                            RadioButton5.Visible = True
+                            RadioButton6.Visible = True
+                            TextBox1.Visible = True
+                            Button1.Visible = True
+                            Button2.Visible = True
+                            Button3.Visible = True
+                            Label3.Visible = True
+                            ProgressBar1.Visible = False
+                            GroupBox1.Visible = True
+                            GroupBox2.Visible = True
+                            Exit For
+                        End If
                         Dim downloads = JObject.Parse(download_urls)
                         Dim this_dl = ""
                         If download_type = "Direct" Then
@@ -281,6 +365,34 @@ Public Class Form1
                         Dim qs = New Uri(link).Query
                         Dim qd = Web.HttpUtility.ParseQueryString(qs)
                         Dim download_urls = PostURL(link, qd("machine_name"), qd("filename"))
+                        If (download_urls Is Nothing) Or (download_urls.Substring(0, 7) = "<!docty") Then
+                            RichTextBox1.AppendText(Environment.NewLine)
+                            RichTextBox1.AppendText("Download Failed (Not Subscribed)")
+                            TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress)
+                            win_downloads = New List(Of String)
+                            mac_downloads = New List(Of String)
+                            lin_downloads = New List(Of String)
+                            downloaded = 0
+                            Label1.Visible = False
+                            Label2.Visible = True
+                            Label3.Visible = True
+                            Label4.Visible = True
+                            RadioButton1.Visible = True
+                            RadioButton2.Visible = True
+                            RadioButton3.Visible = True
+                            RadioButton4.Visible = True
+                            RadioButton5.Visible = True
+                            RadioButton6.Visible = True
+                            TextBox1.Visible = True
+                            Button1.Visible = True
+                            Button2.Visible = True
+                            Button3.Visible = True
+                            Label3.Visible = True
+                            ProgressBar1.Visible = False
+                            GroupBox1.Visible = True
+                            GroupBox2.Visible = True
+                            Exit For
+                        End If
                         Dim downloads = JObject.Parse(download_urls)
                         Dim this_dl = ""
                         If download_type = "Direct" Then
@@ -307,6 +419,34 @@ Public Class Form1
                         Dim qs = New Uri(link).Query
                         Dim qd = Web.HttpUtility.ParseQueryString(qs)
                         Dim download_urls = PostURL(link, qd("machine_name"), qd("filename"))
+                        If (download_urls Is Nothing) Or (download_urls.Substring(0, 7) = "<!docty") Then
+                            RichTextBox1.AppendText(Environment.NewLine)
+                            RichTextBox1.AppendText("Download Failed (Not Subscribed)")
+                            TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress)
+                            win_downloads = New List(Of String)
+                            mac_downloads = New List(Of String)
+                            lin_downloads = New List(Of String)
+                            downloaded = 0
+                            Label1.Visible = False
+                            Label2.Visible = True
+                            Label3.Visible = True
+                            Label4.Visible = True
+                            RadioButton1.Visible = True
+                            RadioButton2.Visible = True
+                            RadioButton3.Visible = True
+                            RadioButton4.Visible = True
+                            RadioButton5.Visible = True
+                            RadioButton6.Visible = True
+                            TextBox1.Visible = True
+                            Button1.Visible = True
+                            Button2.Visible = True
+                            Button3.Visible = True
+                            Label3.Visible = True
+                            ProgressBar1.Visible = False
+                            GroupBox1.Visible = True
+                            GroupBox2.Visible = True
+                            Exit For
+                        End If
                         Dim downloads = JObject.Parse(download_urls)
                         Dim this_dl = ""
                         If download_type = "Direct" Then
@@ -333,6 +473,34 @@ Public Class Form1
                         Dim qs = New Uri(link).Query
                         Dim qd = Web.HttpUtility.ParseQueryString(qs)
                         Dim download_urls = PostURL(link, qd("machine_name"), qd("filename"))
+                        If (download_urls Is Nothing) Or (download_urls.Substring(0, 7) = "<!docty") Then
+                            RichTextBox1.AppendText(Environment.NewLine)
+                            RichTextBox1.AppendText("Download Failed (Not Subscribed)")
+                            TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress)
+                            win_downloads = New List(Of String)
+                            mac_downloads = New List(Of String)
+                            lin_downloads = New List(Of String)
+                            downloaded = 0
+                            Label1.Visible = False
+                            Label2.Visible = True
+                            Label3.Visible = True
+                            Label4.Visible = True
+                            RadioButton1.Visible = True
+                            RadioButton2.Visible = True
+                            RadioButton3.Visible = True
+                            RadioButton4.Visible = True
+                            RadioButton5.Visible = True
+                            RadioButton6.Visible = True
+                            TextBox1.Visible = True
+                            Button1.Visible = True
+                            Button2.Visible = True
+                            Button3.Visible = True
+                            Label3.Visible = True
+                            ProgressBar1.Visible = False
+                            GroupBox1.Visible = True
+                            GroupBox2.Visible = True
+                            Exit For
+                        End If
                         Dim downloads = JObject.Parse(download_urls)
                         Dim this_dl = ""
                         If download_type = "Direct" Then
@@ -401,6 +569,10 @@ Public Class Form1
         reqparm.Add("filename", filename)
         client.Headers.Set("cookie", $"_simpleauth_sess={session_key}")
         Dim responsebytes = client.UploadValues(url, "POST", reqparm)
+        If responsebytes Is Nothing Then
+            client.Dispose()
+            Return Nothing
+        End If
         Dim responsebody = (New Text.UTF8Encoding).GetString(responsebytes)
         client.Dispose()
         Return responsebody
