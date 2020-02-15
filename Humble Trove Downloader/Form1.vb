@@ -175,7 +175,7 @@ Public Class Form1
                         Dim qs = New Uri(link).Query
                         Dim qd = Web.HttpUtility.ParseQueryString(qs)
                         Dim download_urls = PostURL(link, qd("machine_name"), qd("filename"))
-                        If download_urls Is Nothing Then
+                        If download_urls.Substring(0, 7) = "<!docty" Then
                             RichTextBox1.AppendText(Environment.NewLine)
                             RichTextBox1.AppendText("Download Failed (Not Subscribed)")
                             TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress)
@@ -236,7 +236,7 @@ Public Class Form1
                         Dim qs = New Uri(link).Query
                         Dim qd = Web.HttpUtility.ParseQueryString(qs)
                         Dim download_urls = PostURL(link, qd("machine_name"), qd("filename"))
-                        If download_urls Is Nothing Then
+                        If download_urls.Substring(0, 7) = "<!docty" Then
                             RichTextBox1.AppendText(Environment.NewLine)
                             RichTextBox1.AppendText("Download Failed (Not Subscribed)")
                             TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress)
@@ -297,7 +297,7 @@ Public Class Form1
                         Dim qs = New Uri(link).Query
                         Dim qd = Web.HttpUtility.ParseQueryString(qs)
                         Dim download_urls = PostURL(link, qd("machine_name"), qd("filename"))
-                        If download_urls Is Nothing Then
+                        If download_urls.Substring(0, 7) = "<!docty" Then
                             RichTextBox1.AppendText(Environment.NewLine)
                             RichTextBox1.AppendText("Download Failed (Not Subscribed)")
                             TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress)
@@ -365,7 +365,7 @@ Public Class Form1
                         Dim qs = New Uri(link).Query
                         Dim qd = Web.HttpUtility.ParseQueryString(qs)
                         Dim download_urls = PostURL(link, qd("machine_name"), qd("filename"))
-                        If download_urls Is Nothing Then
+                        If download_urls.Substring(0, 7) = "<!docty" Then
                             RichTextBox1.AppendText(Environment.NewLine)
                             RichTextBox1.AppendText("Download Failed (Not Subscribed)")
                             TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress)
@@ -419,7 +419,7 @@ Public Class Form1
                         Dim qs = New Uri(link).Query
                         Dim qd = Web.HttpUtility.ParseQueryString(qs)
                         Dim download_urls = PostURL(link, qd("machine_name"), qd("filename"))
-                        If download_urls Is Nothing Then
+                        If download_urls.Substring(0, 7) = "<!docty" Then
                             RichTextBox1.AppendText(Environment.NewLine)
                             RichTextBox1.AppendText("Download Failed (Not Subscribed)")
                             TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress)
@@ -473,7 +473,7 @@ Public Class Form1
                         Dim qs = New Uri(link).Query
                         Dim qd = Web.HttpUtility.ParseQueryString(qs)
                         Dim download_urls = PostURL(link, qd("machine_name"), qd("filename"))
-                        If download_urls Is Nothing Then
+                        If download_urls.Substring(0, 7) = "<!docty" Then
                             RichTextBox1.AppendText(Environment.NewLine)
                             RichTextBox1.AppendText("Download Failed (Not Subscribed)")
                             TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress)
@@ -573,11 +573,11 @@ Public Class Form1
             responsebytes = client.UploadValues(url, "POST", reqparm)
         Catch ex As WebException
             client.Dispose()
-            Return Nothing
+            Return "<!docty"
         End Try
         If responsebytes Is Nothing Then
             client.Dispose()
-            Return Nothing
+            Return "<!docty"
         End If
         Dim responsebody = (New Text.UTF8Encoding).GetString(responsebytes)
         client.Dispose()

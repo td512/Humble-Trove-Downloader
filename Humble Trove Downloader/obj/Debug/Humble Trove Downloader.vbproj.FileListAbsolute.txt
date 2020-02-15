@@ -19,24 +19,3 @@ M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\obj\Debug\Humble Trove
 M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\obj\Debug\Humble Trove Downloader.pdb
 M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\obj\Debug\Humble Trove Downloader.vbprojAssemblyReference.cache
 M:\GitHub\Humble Trove Downloader\Humble Trove Downloader\bin\Debug\Humble Helper.dll
-M:\GitHub\Humble-Trove-Downloader\Humble Trove Downloader\bin\Debug\Humble Trove Downloader.exe.config
-M:\GitHub\Humble-Trove-Downloader\Humble Trove Downloader\bin\Debug\Humble Trove Downloader.exe
-M:\GitHub\Humble-Trove-Downloader\Humble Trove Downloader\bin\Debug\Humble Trove Downloader.pdb
-M:\GitHub\Humble-Trove-Downloader\Humble Trove Downloader\bin\Debug\Humble Trove Downloader.xml
-M:\GitHub\Humble-Trove-Downloader\Humble Trove Downloader\bin\Debug\Humble Helper.dll
-M:\GitHub\Humble-Trove-Downloader\Humble Trove Downloader\bin\Debug\Microsoft.WindowsAPICodePack.dll
-M:\GitHub\Humble-Trove-Downloader\Humble Trove Downloader\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
-M:\GitHub\Humble-Trove-Downloader\Humble Trove Downloader\bin\Debug\Newtonsoft.Json.dll
-M:\GitHub\Humble-Trove-Downloader\Humble Trove Downloader\bin\Debug\Syroot.KnownFolders.dll
-M:\GitHub\Humble-Trove-Downloader\Humble Trove Downloader\bin\Debug\Microsoft.WindowsAPICodePack.xml
-M:\GitHub\Humble-Trove-Downloader\Humble Trove Downloader\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml
-M:\GitHub\Humble-Trove-Downloader\Humble Trove Downloader\bin\Debug\Syroot.KnownFolders.xml
-M:\GitHub\Humble-Trove-Downloader\Humble Trove Downloader\obj\Debug\Humble_Trove_Downloader.Form1.resources
-M:\GitHub\Humble-Trove-Downloader\Humble Trove Downloader\obj\Debug\Humble_Trove_Downloader.Resources.resources
-M:\GitHub\Humble-Trove-Downloader\Humble Trove Downloader\obj\Debug\Humble_Trove_Downloader.WebView.resources
-M:\GitHub\Humble-Trove-Downloader\Humble Trove Downloader\obj\Debug\Humble Trove Downloader.vbproj.GenerateResource.cache
-M:\GitHub\Humble-Trove-Downloader\Humble Trove Downloader\obj\Debug\Humble Trove Downloader.vbproj.CopyComplete
-M:\GitHub\Humble-Trove-Downloader\Humble Trove Downloader\obj\Debug\Humble Trove Downloader.exe
-M:\GitHub\Humble-Trove-Downloader\Humble Trove Downloader\obj\Debug\Humble Trove Downloader.xml
-M:\GitHub\Humble-Trove-Downloader\Humble Trove Downloader\obj\Debug\Humble Trove Downloader.pdb
-M:\GitHub\Humble-Trove-Downloader\Humble Trove Downloader\obj\Debug\Humble Trove Downloader.vbprojAssemblyReference.cache
