@@ -62,6 +62,10 @@ The program takes 4 arguments:
 
 > The installer you're downloading from the CDN includes the prerequisite .NET 4.6 installer, as well as a font, and a few library the application needs
 
+* I clicked Log In but it's doing nothing!
+
+> Patience young Padawan. reCAPTCHA will appear, give it time. Google is slow
+
 * It crashed! Help!
 
 > File an issue [here](https://github.com/td512/Humble-Trove-Downloader/issues) and I'll take a look. If you've got the .NET stack trace, please include that in your report
