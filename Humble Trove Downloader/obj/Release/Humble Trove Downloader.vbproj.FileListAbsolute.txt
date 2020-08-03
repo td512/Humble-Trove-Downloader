@@ -35,6 +35,7 @@ M:\GitHub\Humble-Trove-Downloader\Humble Trove Downloader\obj\Release\Humble_Tro
 M:\GitHub\Humble-Trove-Downloader\Humble Trove Downloader\obj\Release\Humble_Trove_Downloader.Resources.resources
 M:\GitHub\Humble-Trove-Downloader\Humble Trove Downloader\obj\Release\Humble_Trove_Downloader.WebView.resources
 M:\GitHub\Humble-Trove-Downloader\Humble Trove Downloader\obj\Release\Humble Trove Downloader.vbproj.GenerateResource.cache
+M:\GitHub\Humble-Trove-Downloader\Humble Trove Downloader\obj\Release\Humble Trove Downloader.vbproj.CoreCompileInputs.cache
 M:\GitHub\Humble-Trove-Downloader\Humble Trove Downloader\obj\Release\Humble Trove Downloader.vbproj.CopyComplete
 M:\GitHub\Humble-Trove-Downloader\Humble Trove Downloader\obj\Release\Humble Trove Downloader.exe
 M:\GitHub\Humble-Trove-Downloader\Humble Trove Downloader\obj\Release\Humble Trove Downloader.xml

@@ -8,7 +8,7 @@ Imports Syroot.Windows.IO
 Imports Microsoft.Win32
 Public Class Form1
 
-    Public baseuri = "https://www.humblebundle.com/api/v1/trove/chunk?index="
+    Public baseuri = "https://www.humblebundle.com/api/v1/trove/chunk?property=popularity&direction=desc&index="
     Public counter = 0
     Public chunked = False
     Public download = ""
