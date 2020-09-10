@@ -60,7 +60,7 @@ The program takes 4 arguments:
 
 * Why is the installer so big if the application is only 1MB or so?
 
-> The installer you're downloading from the CDN includes the prerequisite .NET 4.6 installer, as well as a font, and a few library the application needs
+> The installer you're downloading from the CDN includes the prerequisite .NET 4.6 installer, as well as a font, and a few libraries the application needs
 
 * I clicked Log In but it's doing nothing!
 
