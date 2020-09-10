@@ -166,7 +166,6 @@ Public Class Form1
                     downloads_to_complete = win_links
                     RichTextBox1.AppendText(Environment.NewLine)
                     RichTextBox1.AppendText($"There are {win_links} files for me to download")
-
                     RichTextBox1.AppendText(Environment.NewLine)
                     RichTextBox1.AppendText($"Creating directory {save_to}\Windows")
                     Directory.CreateDirectory(save_to & "\Windows")
@@ -567,7 +566,7 @@ Public Class Form1
         Dim reqparm As New Specialized.NameValueCollection
         reqparm.Add("machine_name", machine_name)
         reqparm.Add("filename", filename)
-        client.Headers.Set("cookie", $"_simpleauth_sess={session_key}")
+        client.Headers.Set("cookie", $"_simpleauth_sess=""{session_key}""")
         Dim responsebytes As Byte()
         Try
             responsebytes = client.UploadValues(url, "POST", reqparm)
