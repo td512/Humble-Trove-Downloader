@@ -55,9 +55,12 @@ Public Class WebView
     Private Sub WebBrowser1_DocumentCompleted(sender As Object, e As WebBrowserDocumentCompletedEventArgs) Handles WebBrowser1.DocumentCompleted
         If Path.GetFileName(New Uri(WebBrowser1.Url.AbsoluteUri).LocalPath) = "library" Then
             Dim result = WebHelper.GetGlobalCookies(WebBrowser1.Url.AbsoluteUri)
-            Dim baseSessionKey = result.Split(",")(1)
-            Console.WriteLine(result)
-            sessionCookie = baseSessionKey.Split("=")(1)
+            Dim baseSessionKey = result.Split(",")
+            For Each keypair In baseSessionKey
+                If keypair.Split("=")(0) = " _simpleauth_sess" Then
+                    sessionCookie = keypair.Split("=")(1).Replace("""", "")
+                End If
+            Next
             Form1.BreakOut()
         End If
     End Sub
