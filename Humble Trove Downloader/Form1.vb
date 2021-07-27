@@ -163,364 +163,15 @@ Public Class Form1
 
             Select Case download
                 Case "Windows"
-                    downloads_to_complete = win_links
-                    RichTextBox1.AppendText(Environment.NewLine)
-                    RichTextBox1.AppendText($"There are {win_links} files for me to download")
-                    RichTextBox1.AppendText(Environment.NewLine)
-                    RichTextBox1.AppendText($"Creating directory {save_to}\Windows")
-                    Directory.CreateDirectory(save_to & "\Windows")
-                    For Each link In win_downloads
-                        downloaded += 1
-                        Dim qs = New Uri(link).Query
-                        Dim qd = Web.HttpUtility.ParseQueryString(qs)
-                        Dim download_urls = PostURL(link, qd("machine_name"), qd("filename"))
-                        If download_urls.Substring(0, 7) = "<!docty" Then
-                            RichTextBox1.AppendText(Environment.NewLine)
-                            RichTextBox1.AppendText("Download Failed (Not Subscribed)")
-                            TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress)
-                            win_downloads = New List(Of String)
-                            mac_downloads = New List(Of String)
-                            lin_downloads = New List(Of String)
-                            downloaded = 0
-                            Label1.Visible = False
-                            Label2.Visible = True
-                            Label3.Visible = True
-                            Label4.Visible = True
-                            RadioButton1.Visible = True
-                            RadioButton2.Visible = True
-                            RadioButton3.Visible = True
-                            RadioButton4.Visible = True
-                            RadioButton5.Visible = True
-                            RadioButton6.Visible = True
-                            TextBox1.Visible = True
-                            Button1.Visible = True
-                            Button2.Visible = True
-                            Button3.Visible = True
-                            Label3.Visible = True
-                            ProgressBar1.Visible = False
-                            GroupBox1.Visible = True
-                            GroupBox2.Visible = True
-                            Exit For
-                        End If
-                        Dim downloads = JObject.Parse(download_urls)
-                        Dim this_dl = ""
-                        If download_type = "Direct" Then
-                            this_dl = downloads("signed_url")
-                        Else
-                            this_dl = downloads("signed_torrent_url")
-                        End If
-                        If this_dl Is Nothing Then
-                            Continue For
-                        End If
-                        Dim this_filename = Path.GetFileName(New Uri(this_dl).LocalPath)
-                        this_filepath = $"{save_to}\Windows\{this_filename}"
-                        RichTextBox1.AppendText(Environment.NewLine)
-                        RichTextBox1.AppendText($"Starting download for {this_filename} (Windows)")
-                        AddHandler wc.DownloadProgressChanged, AddressOf DownloadProgressChanged
-                        AddHandler wc.DownloadFileCompleted, AddressOf DownloadProgressCompleted
-                        Await wc.DownloadFileTaskAsync(New Uri(this_dl), this_filepath)
-                        wc.Dispose()
-                        RichTextBox1.AppendText(Environment.NewLine)
-                        RichTextBox1.AppendText($"I've downloaded {downloaded} / {win_links} files, {win_links - downloaded} files left")
-                    Next
+                    Await GetFiles(win_downloads, win_links, "Windows")
                 Case "Mac"
-                    downloads_to_complete = mac_links
-                    RichTextBox1.AppendText(Environment.NewLine)
-                    RichTextBox1.AppendText($"There are {mac_links} files for me to download")
-                    RichTextBox1.AppendText(Environment.NewLine)
-                    RichTextBox1.AppendText($"Creating directory {save_to}\Mac")
-                    Directory.CreateDirectory(save_to & "\Mac")
-                    For Each link In mac_downloads
-                        downloaded += 1
-                        Dim qs = New Uri(link).Query
-                        Dim qd = Web.HttpUtility.ParseQueryString(qs)
-                        Dim download_urls = PostURL(link, qd("machine_name"), qd("filename"))
-                        If download_urls.Substring(0, 7) = "<!docty" Then
-                            RichTextBox1.AppendText(Environment.NewLine)
-                            RichTextBox1.AppendText("Download Failed (Not Subscribed)")
-                            TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress)
-                            win_downloads = New List(Of String)
-                            mac_downloads = New List(Of String)
-                            lin_downloads = New List(Of String)
-                            downloaded = 0
-                            Label1.Visible = False
-                            Label2.Visible = True
-                            Label3.Visible = True
-                            Label4.Visible = True
-                            RadioButton1.Visible = True
-                            RadioButton2.Visible = True
-                            RadioButton3.Visible = True
-                            RadioButton4.Visible = True
-                            RadioButton5.Visible = True
-                            RadioButton6.Visible = True
-                            TextBox1.Visible = True
-                            Button1.Visible = True
-                            Button2.Visible = True
-                            Button3.Visible = True
-                            Label3.Visible = True
-                            ProgressBar1.Visible = False
-                            GroupBox1.Visible = True
-                            GroupBox2.Visible = True
-                            Exit For
-                        End If
-                        Dim downloads = JObject.Parse(download_urls)
-                        Dim this_dl = ""
-                        If download_type = "Direct" Then
-                            this_dl = downloads("signed_url")
-                        Else
-                            this_dl = downloads("signed_torrent_url")
-                        End If
-                        If this_dl Is Nothing Then
-                            Continue For
-                        End If
-                        Dim this_filename = Path.GetFileName(New Uri(this_dl).LocalPath)
-                        this_filepath = $"{save_to}\Mac\{this_filename}"
-                        RichTextBox1.AppendText(Environment.NewLine)
-                        RichTextBox1.AppendText($"Starting download for {this_filename} (Mac)")
-                        AddHandler wc.DownloadProgressChanged, AddressOf DownloadProgressChanged
-                        AddHandler wc.DownloadFileCompleted, AddressOf DownloadProgressCompleted
-                        Await wc.DownloadFileTaskAsync(New Uri(this_dl), this_filepath)
-                        wc.Dispose()
-                        RichTextBox1.AppendText(Environment.NewLine)
-                        RichTextBox1.AppendText($"I've downloaded {downloaded} / {mac_links} files, {mac_links - downloaded} files left")
-                    Next
+                    Await GetFiles(mac_downloads, mac_links, "Mac")
                 Case "Linux"
-                    downloads_to_complete = lin_links
-                    RichTextBox1.AppendText(Environment.NewLine)
-                    RichTextBox1.AppendText($"There are {lin_links} files for me to download")
-                    RichTextBox1.AppendText(Environment.NewLine)
-                    RichTextBox1.AppendText($"Creating directory {save_to}\Linux")
-                    Directory.CreateDirectory(save_to & "\Linux")
-                    For Each link In lin_downloads
-                        downloaded += 1
-                        Dim qs = New Uri(link).Query
-                        Dim qd = Web.HttpUtility.ParseQueryString(qs)
-                        Dim download_urls = PostURL(link, qd("machine_name"), qd("filename"))
-                        If download_urls.Substring(0, 7) = "<!docty" Then
-                            RichTextBox1.AppendText(Environment.NewLine)
-                            RichTextBox1.AppendText("Download Failed (Not Subscribed)")
-                            TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress)
-                            win_downloads = New List(Of String)
-                            mac_downloads = New List(Of String)
-                            lin_downloads = New List(Of String)
-                            downloaded = 0
-                            Label1.Visible = False
-                            Label2.Visible = True
-                            Label3.Visible = True
-                            Label4.Visible = True
-                            RadioButton1.Visible = True
-                            RadioButton2.Visible = True
-                            RadioButton3.Visible = True
-                            RadioButton4.Visible = True
-                            RadioButton5.Visible = True
-                            RadioButton6.Visible = True
-                            TextBox1.Visible = True
-                            Button1.Visible = True
-                            Button2.Visible = True
-                            Button3.Visible = True
-                            Label3.Visible = True
-                            ProgressBar1.Visible = False
-                            GroupBox1.Visible = True
-                            GroupBox2.Visible = True
-                            Exit For
-                        End If
-                        Dim downloads = JObject.Parse(download_urls)
-                        Dim this_dl = ""
-                        If download_type = "Direct" Then
-                            this_dl = downloads("signed_url")
-                        Else
-                            this_dl = downloads("signed_torrent_url")
-                        End If
-                        If this_dl Is Nothing Then
-                            Continue For
-                        End If
-                        Dim this_filename = Path.GetFileName(New Uri(this_dl).LocalPath)
-                        this_filepath = $"{save_to}\Linux\{this_filename}"
-                        RichTextBox1.AppendText(Environment.NewLine)
-                        RichTextBox1.AppendText($"Starting download for {this_filename} (Linux)")
-                        AddHandler wc.DownloadProgressChanged, AddressOf DownloadProgressChanged
-                        AddHandler wc.DownloadFileCompleted, AddressOf DownloadProgressCompleted
-                        Await wc.DownloadFileTaskAsync(New Uri(this_dl), this_filepath)
-                        wc.Dispose()
-                        RichTextBox1.AppendText(Environment.NewLine)
-                        RichTextBox1.AppendText($"I've downloaded {downloaded} / {lin_links} files, {lin_links - downloaded} files left")
-                    Next
+                    Await GetFiles(lin_downloads, lin_links, "Linux")
                 Case "All"
-                    downloads_to_complete = all_links
-                    RichTextBox1.AppendText(Environment.NewLine)
-                    RichTextBox1.AppendText($"There are {all_links} files for me to download")
-                    RichTextBox1.AppendText(Environment.NewLine)
-                    RichTextBox1.AppendText($"Creating directory {save_to}\Windows")
-                    Directory.CreateDirectory(save_to & "\Windows")
-                    RichTextBox1.AppendText(Environment.NewLine)
-                    RichTextBox1.AppendText($"Creating directory {save_to}\Mac")
-                    Directory.CreateDirectory(save_to & "\Mac")
-                    RichTextBox1.AppendText(Environment.NewLine)
-                    RichTextBox1.AppendText($"Creating directory {save_to}\Linux")
-                    Directory.CreateDirectory(save_to & "\Linux")
-
-                    For Each link In win_downloads
-                        downloaded += 1
-                        Dim qs = New Uri(link).Query
-                        Dim qd = Web.HttpUtility.ParseQueryString(qs)
-                        Dim download_urls = PostURL(link, qd("machine_name"), qd("filename"))
-                        If download_urls.Substring(0, 7) = "<!docty" Then
-                            RichTextBox1.AppendText(Environment.NewLine)
-                            RichTextBox1.AppendText("Download Failed (Not Subscribed)")
-                            TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress)
-                            win_downloads = New List(Of String)
-                            mac_downloads = New List(Of String)
-                            lin_downloads = New List(Of String)
-                            downloaded = 0
-                            Label1.Visible = False
-                            Label2.Visible = True
-                            Label3.Visible = True
-                            Label4.Visible = True
-                            RadioButton1.Visible = True
-                            RadioButton2.Visible = True
-                            RadioButton3.Visible = True
-                            RadioButton4.Visible = True
-                            RadioButton5.Visible = True
-                            RadioButton6.Visible = True
-                            TextBox1.Visible = True
-                            Button1.Visible = True
-                            Button2.Visible = True
-                            Button3.Visible = True
-                            Label3.Visible = True
-                            ProgressBar1.Visible = False
-                            GroupBox1.Visible = True
-                            GroupBox2.Visible = True
-                            Exit For
-                        End If
-                        Dim downloads = JObject.Parse(download_urls)
-                        Dim this_dl = ""
-                        If download_type = "Direct" Then
-                            this_dl = downloads("signed_url")
-                        Else
-                            this_dl = downloads("signed_torrent_url")
-                        End If
-                        If this_dl Is Nothing Then
-                            Continue For
-                        End If
-                        Dim this_filename = Path.GetFileName(New Uri(this_dl).LocalPath)
-                        this_filepath = $"{save_to}\Windows\{this_filename}"
-                        RichTextBox1.AppendText(Environment.NewLine)
-                        RichTextBox1.AppendText($"Starting download for {this_filename} (Windows)")
-                        AddHandler wc.DownloadProgressChanged, AddressOf DownloadProgressChanged
-                        AddHandler wc.DownloadFileCompleted, AddressOf DownloadProgressCompleted
-                        Await wc.DownloadFileTaskAsync(New Uri(this_dl), this_filepath)
-                        wc.Dispose()
-                        RichTextBox1.AppendText(Environment.NewLine)
-                        RichTextBox1.AppendText($"I've downloaded {downloaded} / {all_links} files, {all_links - downloaded} files left")
-                    Next
-                    For Each link In mac_downloads
-                        downloaded += 1
-                        Dim qs = New Uri(link).Query
-                        Dim qd = Web.HttpUtility.ParseQueryString(qs)
-                        Dim download_urls = PostURL(link, qd("machine_name"), qd("filename"))
-                        If download_urls.Substring(0, 7) = "<!docty" Then
-                            RichTextBox1.AppendText(Environment.NewLine)
-                            RichTextBox1.AppendText("Download Failed (Not Subscribed)")
-                            TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress)
-                            win_downloads = New List(Of String)
-                            mac_downloads = New List(Of String)
-                            lin_downloads = New List(Of String)
-                            downloaded = 0
-                            Label1.Visible = False
-                            Label2.Visible = True
-                            Label3.Visible = True
-                            Label4.Visible = True
-                            RadioButton1.Visible = True
-                            RadioButton2.Visible = True
-                            RadioButton3.Visible = True
-                            RadioButton4.Visible = True
-                            RadioButton5.Visible = True
-                            RadioButton6.Visible = True
-                            TextBox1.Visible = True
-                            Button1.Visible = True
-                            Button2.Visible = True
-                            Button3.Visible = True
-                            Label3.Visible = True
-                            ProgressBar1.Visible = False
-                            GroupBox1.Visible = True
-                            GroupBox2.Visible = True
-                            Exit For
-                        End If
-                        Dim downloads = JObject.Parse(download_urls)
-                        Dim this_dl = ""
-                        If download_type = "Direct" Then
-                            this_dl = downloads("signed_url")
-                        Else
-                            this_dl = downloads("signed_torrent_url")
-                        End If
-                        If this_dl Is Nothing Then
-                            Continue For
-                        End If
-                        Dim this_filename = Path.GetFileName(New Uri(this_dl).LocalPath)
-                        this_filepath = $"{save_to}\Mac\{this_filename}"
-                        RichTextBox1.AppendText(Environment.NewLine)
-                        RichTextBox1.AppendText($"Starting download for {this_filename} (Mac)")
-                        AddHandler wc.DownloadProgressChanged, AddressOf DownloadProgressChanged
-                        AddHandler wc.DownloadFileCompleted, AddressOf DownloadProgressCompleted
-                        Await wc.DownloadFileTaskAsync(New Uri(this_dl), this_filepath)
-                        wc.Dispose()
-                        RichTextBox1.AppendText(Environment.NewLine)
-                        RichTextBox1.AppendText($"I've downloaded {downloaded} / {all_links} files, {all_links - downloaded} files left")
-                    Next
-                    For Each link In lin_downloads
-                        downloaded += 1
-                        Dim qs = New Uri(link).Query
-                        Dim qd = Web.HttpUtility.ParseQueryString(qs)
-                        Dim download_urls = PostURL(link, qd("machine_name"), qd("filename"))
-                        If download_urls.Substring(0, 7) = "<!docty" Then
-                            RichTextBox1.AppendText(Environment.NewLine)
-                            RichTextBox1.AppendText("Download Failed (Not Subscribed)")
-                            TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress)
-                            win_downloads = New List(Of String)
-                            mac_downloads = New List(Of String)
-                            lin_downloads = New List(Of String)
-                            downloaded = 0
-                            Label1.Visible = False
-                            Label2.Visible = True
-                            Label3.Visible = True
-                            Label4.Visible = True
-                            RadioButton1.Visible = True
-                            RadioButton2.Visible = True
-                            RadioButton3.Visible = True
-                            RadioButton4.Visible = True
-                            RadioButton5.Visible = True
-                            RadioButton6.Visible = True
-                            TextBox1.Visible = True
-                            Button1.Visible = True
-                            Button2.Visible = True
-                            Button3.Visible = True
-                            Label3.Visible = True
-                            ProgressBar1.Visible = False
-                            GroupBox1.Visible = True
-                            GroupBox2.Visible = True
-                            Exit For
-                        End If
-                        Dim downloads = JObject.Parse(download_urls)
-                        Dim this_dl = ""
-                        If download_type = "Direct" Then
-                            this_dl = downloads("signed_url")
-                        Else
-                            this_dl = downloads("signed_torrent_url")
-                        End If
-                        If this_dl Is Nothing Then
-                            Continue For
-                        End If
-                        Dim this_filename = Path.GetFileName(New Uri(this_dl).LocalPath)
-                        this_filepath = $"{save_to}\Windows\{this_filename}"
-                        RichTextBox1.AppendText(Environment.NewLine)
-                        RichTextBox1.AppendText($"Starting download for {this_filename} (Linux)")
-                        AddHandler wc.DownloadProgressChanged, AddressOf DownloadProgressChanged
-                        AddHandler wc.DownloadFileCompleted, AddressOf DownloadProgressCompleted
-                        Await wc.DownloadFileTaskAsync(New Uri(this_dl), this_filepath)
-                        wc.Dispose()
-                        RichTextBox1.AppendText(Environment.NewLine)
-                        RichTextBox1.AppendText($"I've downloaded {downloaded} / {all_links} files, {all_links - downloaded} files left")
-                    Next
+                    Await GetFiles(win_downloads, all_links, "Windows")
+                    Await GetFiles(mac_downloads, all_links, "Mac")
+                    Await GetFiles(lin_downloads, all_links, "Linux")
             End Select
         End If
     End Sub
@@ -581,6 +232,71 @@ Public Class Form1
         Dim responsebody = (New Text.UTF8Encoding).GetString(responsebytes)
         client.Dispose()
         Return responsebody
+    End Function
+
+    Public Async Function GetFiles(lnk_downloads As List(Of String), linkCount As Integer, osName As String) As Task
+        downloads_to_complete = linkCount
+        RichTextBox1.AppendText($"There are {linkCount} files for me to download{Environment.NewLine}")
+        RichTextBox1.AppendText($"Creating directory {save_to}\{osName}{Environment.NewLine}")
+        Directory.CreateDirectory(save_to & $"\{osName}")
+        For Each link In lnk_downloads
+            downloaded += 1
+            Dim qs = New Uri(link).Query
+            Dim qd = Web.HttpUtility.ParseQueryString(qs)
+            Dim download_urls = PostURL(link, qd("machine_name"), qd("filename"))
+            If download_urls.Substring(0, 7) = "<!docty" Then
+                RichTextBox1.AppendText($"Download Failed (Not Subscribed){Environment.NewLine}")
+                TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress)
+                win_downloads = New List(Of String)
+                mac_downloads = New List(Of String)
+                lin_downloads = New List(Of String)
+                downloaded = 0
+                Label1.Visible = False
+                Label2.Visible = True
+                Label3.Visible = True
+                Label4.Visible = True
+                RadioButton1.Visible = True
+                RadioButton2.Visible = True
+                RadioButton3.Visible = True
+                RadioButton4.Visible = True
+                RadioButton5.Visible = True
+                RadioButton6.Visible = True
+                TextBox1.Visible = True
+                Button1.Visible = True
+                Button2.Visible = True
+                Button3.Visible = True
+                Label3.Visible = True
+                ProgressBar1.Visible = False
+                GroupBox1.Visible = True
+                GroupBox2.Visible = True
+                Exit For
+            End If
+            Dim downloads = JObject.Parse(download_urls)
+            Dim this_dl = ""
+            If download_type = "Direct" Then
+                this_dl = downloads("signed_url")
+            Else
+                this_dl = downloads("signed_torrent_url")
+            End If
+            If this_dl Is Nothing Then
+                Continue For
+            End If
+            Dim this_filename = Path.GetFileName(New Uri(this_dl).LocalPath)
+            this_filepath = $"{save_to}\{osName}\{this_filename}"
+
+            If File.Exists(this_filepath) Then
+                RichTextBox1.AppendText($"File already exits, skipping. {osName}\{this_filename} - {downloaded} / {linkCount} processed{Environment.NewLine}")
+                AddHandler wc.DownloadFileCompleted, AddressOf DownloadProgressCompleted
+                Continue For
+            End If
+
+            RichTextBox1.AppendText($"Starting download for {this_filename} ({osName}){Environment.NewLine}")
+            AddHandler wc.DownloadProgressChanged, AddressOf DownloadProgressChanged
+            AddHandler wc.DownloadFileCompleted, AddressOf DownloadProgressCompleted
+            Await wc.DownloadFileTaskAsync(New Uri(this_dl), this_filepath)
+            wc.Dispose()
+            RichTextBox1.AppendText($"I've downloaded {downloaded} / {linkCount} processed{Environment.NewLine}")
+        Next
     End Function
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click

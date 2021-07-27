@@ -57,7 +57,7 @@ Public Class WebView
             Dim result = WebHelper.GetGlobalCookies(WebBrowser1.Url.AbsoluteUri)
             Dim baseSessionKey = result.Split(",")
             For Each keypair In baseSessionKey
-                If keypair.Split("=")(0) = " _simpleauth_sess" Then
+                If keypair.Split("=")(0).Trim() = "_simpleauth_sess" Then
                     sessionCookie = keypair.Split("=")(1).Replace("""", "")
                 End If
             Next
